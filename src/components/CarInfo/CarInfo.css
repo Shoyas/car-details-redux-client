@@ -1,0 +1,16 @@
+.image-size{
+    height: 20%;
+    width: 20%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+}
+
+.description-style{
+    width: 45%;
+    margin-left: 321px;
+    margin-top: 20px;
+}
+
+.container h3{
+    text-decoration: underline;
+}
