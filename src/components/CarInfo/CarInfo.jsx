@@ -18,7 +18,7 @@ const CarInfo = () => {
     // console.log(name);
     // console.log(state.items);
 
-    const found= state.items?.find(ele => ele.name === name.name);
+    const found = state.items?.find(ele => ele.name === name.name);
     // console.log(found);
 
     // Delete carBrand function's code
@@ -33,24 +33,57 @@ const CarInfo = () => {
         })
     }
 
+    // Loading carBrand information's code starts from here
     const [loadData, setLoadData] = useState(null) || {};
     const [isOpened, setIsOpened] = useState(false);
 
-    const toggle = (ele) => {
+    const toggle = (id) => {
         // for toggle state
         setIsOpened(wasOpened => !wasOpened);
 
-        // Editing carBrand function's code
-        console.log(ele);
-        fetch(`http://localhost:5000/loadCar/${ele}`)
+        // Loading carBrand information's function's code
+        console.log(id);
+        fetch(`http://localhost:5000/loadCar/${id}`)
         .then(res => res.json())
         .then(data => {
             console.log(data);
             setLoadData(data);
         })
     }
-
     console.log(loadData);
+
+    // Update the loading carBrand information's code from here
+    const [update, setUpdate] = useState() || {};
+
+    const handleUpdateValue = (upValue) => {
+        const newUpdate = {...update};
+        newUpdate[upValue.target.name] = upValue.target.value;
+        setUpdate(newUpdate);
+    }
+    
+
+    const submitUpdate = (id) => {
+        
+        console.log("Hit inside", id);
+        const updateDetails = {update};
+
+        id.preventDefault();
+        console.log(updateDetails);
+
+        fetch(`http://localhost:5000/updateCar/${id}`, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(updateDetails),
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log('Updated');
+        })
+
+    }
+
+    
+
     return (
         <div className="container text-center">
             {
@@ -58,7 +91,7 @@ const CarInfo = () => {
                 :
                 <img className="image-size img-fluid mt-5" src={found?.image} alt={found?.name}/>  
             }
-            {/* <img className="image-size img-fluid mt-5" src={found?.image} alt="" srcset=""/> */}
+
             <h3 className="mt-5"><strong>{found?.name}</strong></h3>
             <h5 className="description-style">{found?.description}</h5>
             <button onClick={() => deleteCarBrand(`${found?._id}`)}>Delete</button>
@@ -71,26 +104,36 @@ const CarInfo = () => {
                         <h3>Update: {loadData?.name}</h3>
                         <br/>
                         <br/>
-                        <input 
-                            type="text" 
-                            className="form-control" 
-                            id="inputAddress" 
-                            placeholder="Enter Brand Name"
-                            value={loadData?.name}
-                            name="name"
-                        />
-                        <br/>
-                        <br/>
-                        <textarea 
-                            className="form-control" 
-                            id="exampleFormControlTextarea1" 
-                            placeholder="Description about brand" 
-                            rows="5"
-                            value={loadData?.description}
-                            name="description" 
-                        >
-                        </textarea> 
+                        <form>
+                            <input 
+                                type="text" 
+                                className="form-control" 
+                                id="inputAddress" 
+                                placeholder="Enter Brand Name"
+                                defaultValue={loadData?.name}
+                                
+                                name="name"
+                                onBlur={handleUpdateValue}
+                            />
+                            <br/>
+                            <br/>
+                            <textarea 
+                                className="form-control" 
+                                id="exampleFormControlTextarea1" 
+                                placeholder="Description about brand" 
+                                rows="5"
+                                defaultValue={loadData?.description}
 
+                                name="description" 
+                                onBlur={handleUpdateValue}
+
+                            >
+                            </textarea> 
+                            <br/>
+                            <br/>
+                            
+                            <button onClick={ () => submitUpdate(`${found?._id}`)}>Submit</button>
+                        </form>
                     </div>
                 )
             }

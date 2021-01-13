@@ -16,6 +16,8 @@ const Body = () => {
         dispatch(fetchCarDetail())
     }, [])
 
+    console.log(state);
+
     const renderCarInformation = () => {
         if(state.loading) {
             return (
@@ -24,15 +26,17 @@ const Body = () => {
                 </div>
             )
         }
-        return(
-            state.items.map(el => {
-                return(
-                    <div className="col-md-3">
-                        <BodyCars key={el.id} el={el}></BodyCars>
-                    </div>   
-                )
-            }) 
-        )
+        else{
+            return(
+                state.items.map(el => {
+                    return(
+                        <div className="col-md-3">
+                            <BodyCars key={el.id} el={el}></BodyCars>
+                        </div>   
+                    )
+                }) 
+            )
+        }
     };
 
     
