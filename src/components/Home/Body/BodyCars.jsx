@@ -21,7 +21,7 @@ const BodyCars = (el) => {
                 {/* {
                     el.el.image ? <img className="img-fluid" src={`data:image/png;base64,${el.el.image.img}`} alt={el.el.name}/>
                     :
-                    // <img className="img-fluid" src={`http://localhost:5000/allCarList/${el.el.image}`} alt={el.el.name}/>
+                    // <img className="img-fluid" src={`https://afternoon-thicket-75984.herokuapp.com/allCarList/${el.el.image}`} alt={el.el.name}/>
                     
                     <img className="img-fluid" src={el.el.image} alt={el.el.name}/>
                     

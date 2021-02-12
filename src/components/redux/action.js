@@ -9,7 +9,7 @@ export const fetchCarDetail = () => async(dispatch, getState) => {
     try{
         // for demo API link
         // const response = await axios.get("https://gentle-river-59668.herokuapp.com/volunteerItems");
-        const response = await axios.get("http://localhost:5000/allCarList");
+        const response = await axios.get("https://afternoon-thicket-75984.herokuapp.com/allCarList");
         dispatch({
             type: "FETCH_CAR_DETAIL_SUCCESS",
             payload: response.data,

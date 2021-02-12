@@ -29,7 +29,7 @@ const AddCar = () => {
         formData.append('name', information.name)
         formData.append('description', information.description);
         
-        fetch('http://localhost:5000/addCarDetail', {
+        fetch('https://afternoon-thicket-75984.herokuapp.com/addCarDetail', {
             method: 'POST',
             body: formData
         })
@@ -46,7 +46,7 @@ const AddCar = () => {
     // Sending all data to Server from FakeData
 
     // const handleAddProduct = () => {
-    //     fetch('http://localhost:5000/addCarDetail', {
+    //     fetch('https://afternoon-thicket-75984.herokuapp.com/addCarDetail', {
     //         method: 'POST',
     //         headers: {
     //             'Content-Type': 'application/json'

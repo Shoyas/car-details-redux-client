@@ -11,7 +11,7 @@ const Navigation = () => {
     const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:5000/getAdmin', {
+        fetch('https://afternoon-thicket-75984.herokuapp.com/getAdmin', {
             method: 'POST',
             headers: {'content-type': 'application/json'},
             body: JSON.stringify({email: loggedInUser.email})

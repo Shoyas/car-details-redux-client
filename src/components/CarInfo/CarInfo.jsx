@@ -25,7 +25,7 @@ const CarInfo = () => {
     // Delete carBrand function's code
     const deleteCarBrand = (id) => {
         console.log(id);
-        fetch(`http://localhost:5000/deleteCar/${id}`, {
+        fetch(`https://afternoon-thicket-75984.herokuapp.com/deleteCar/${id}`, {
             method: 'DELETE'
         })
         .then(res => res.json())
@@ -44,7 +44,7 @@ const CarInfo = () => {
 
         // Loading carBrand information's function's code
         console.log(id);
-        fetch(`http://localhost:5000/loadCar/${id}`)
+        fetch(`https://afternoon-thicket-75984.herokuapp.com/loadCar/${id}`)
         .then(res => res.json())
         .then(data => {
             console.log(data);
@@ -72,7 +72,7 @@ const CarInfo = () => {
 
         console.log(updateDetails);
 
-        fetch(`http://localhost:5000/updateCar/${id}`, {
+        fetch(`https://afternoon-thicket-75984.herokuapp.com/updateCar/${id}`, {
             method: 'PATCH',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(updateDetails),
@@ -89,7 +89,7 @@ const CarInfo = () => {
     const [isAdmin, setIsAdmin] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:5000/getAdmin', {
+        fetch('https://afternoon-thicket-75984.herokuapp.com/getAdmin', {
             method: 'POST',
             headers: {'content-type': 'application/json'},
             body: JSON.stringify({email: loggedInUser.email})
