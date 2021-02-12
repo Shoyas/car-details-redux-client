@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, FormControl, InputGroup } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCarDetail } from '../../redux/action';
@@ -28,7 +28,14 @@ const Body = () => {
         }
         else{
             return(
-                state.items.map(el => {
+                state.items.filter((val) => {
+                    if(searchTerm === ""){
+                        return val
+                    }
+                    else if(val.name.toLowerCase().includes(searchTerm.toLowerCase())){
+                        return val
+                    }
+                }).map(el => {
                     return(
                         <div className="col-md-3">
                             <BodyCars key={el.id} el={el}></BodyCars>
@@ -39,6 +46,8 @@ const Body = () => {
         }
     };
 
+    // Activation of searching
+    const [searchTerm, setSearchTerm] = useState("")
     
 
     return (
@@ -49,6 +58,9 @@ const Body = () => {
                         placeholder="Enter Brand's Name"
                         aria-label="Recipient's username"
                         aria-describedby="basic-addon2"
+                        onChange={(event) => {
+                            setSearchTerm(event.target.value);
+                        }}
                     />
                     <InputGroup.Append>
                         <Button className="btn-primary">Search</Button>
