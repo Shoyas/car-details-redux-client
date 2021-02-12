@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './CarInfo.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { fetchCarDetail } from '../redux/action';
+import { userContext } from '../../App';
 
 const CarInfo = () => {
 
@@ -56,6 +57,7 @@ const CarInfo = () => {
     const [update, setUpdate] = useState() || {};
 
     const handleUpdateValue = (upValue) => {
+        upValue.preventDefault();
         const newUpdate = {...update};
         newUpdate[upValue.target.name] = upValue.target.value;
         setUpdate(newUpdate);
@@ -63,11 +65,11 @@ const CarInfo = () => {
     
 
     const submitUpdate = (id) => {
-        
+        id.preventDefault();
+        id.stopImmediatePropagation();
         console.log("Hit inside", id);
         const updateDetails = {update};
 
-        id.preventDefault();
         console.log(updateDetails);
 
         fetch(`http://localhost:5000/updateCar/${id}`, {
@@ -82,7 +84,22 @@ const CarInfo = () => {
 
     }
 
-    
+    // Protect sensitive area for users
+    const [loggedInUser, setLoggedInUser] = useContext(userContext);
+    const [isAdmin, setIsAdmin] = useState(false);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/getAdmin', {
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: JSON.stringify({email: loggedInUser.email})
+        })
+        .then(res => res.json())
+        .then(data => {
+            setIsAdmin(data);
+            console.log(data);
+        })
+    }, [])
 
     return (
         <div className="container text-center">
@@ -94,9 +111,18 @@ const CarInfo = () => {
 
             <h3 className="mt-5"><strong>{found?.name}</strong></h3>
             <h5 className="description-style">{found?.description}</h5>
-            <button onClick={() => deleteCarBrand(`${found?._id}`)}>Delete</button>
-            <button onClick={ () => toggle(`${found?._id}`)}>Update</button>
+            <div className="d-flex btn-items">
+                <Link to="/home"><button className="btn btn-info">Ok</button></Link>
+                {
+                    isAdmin &&
+                    <div className="">
+                        <button className="btn btn-danger ml-5" onClick={() => deleteCarBrand(`${found?._id}`)}>Delete</button>
+                        <button className="btn btn-secondary ml-5" onClick={ () => toggle(`${found?._id}`)}>Update</button>
+                    </div>
+                }
+            </div>
             
+
             {
                 isOpened && (
                     <div className="updateCarInfo mt-3 pt-5">
@@ -126,12 +152,10 @@ const CarInfo = () => {
 
                                 name="description" 
                                 onBlur={handleUpdateValue}
-
                             >
                             </textarea> 
                             <br/>
                             <br/>
-                            
                             <button onClick={ () => submitUpdate(`${found?._id}`)}>Submit</button>
                         </form>
                     </div>
