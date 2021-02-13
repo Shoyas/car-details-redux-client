@@ -31,3 +31,10 @@
 - Firebase
 - Heroku
 - Github
+
+#### Live site: https://car-hunter-96879.firebaseapp.com/
+##### Or,
+#### Live site: https://car-hunter-96879.web.app/
+
+#### Client site repository: https://github.com/Shoyas/car-details-redux-client
+#### Server site repository: https://github.com/Shoyas/car-details-redux-server
