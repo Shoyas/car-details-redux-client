@@ -117,7 +117,7 @@ const CarInfo = () => {
                     isAdmin &&
                     <div className="">
                         <button className="btn btn-danger ml-5" onClick={() => deleteCarBrand(`${found?._id}`)}>Delete</button>
-                        {/* <button className="btn btn-secondary ml-5" onClick={ () => toggle(`${found?._id}`)}>Update</button> */}
+                        <button className="btn btn-secondary ml-5" onClick={ () => toggle(`${found?._id}`)}>Update</button>
                     </div>
                 }
             </div>
@@ -156,7 +156,7 @@ const CarInfo = () => {
                             </textarea> 
                             <br/>
                             <br/>
-                            <button onClick={ () => submitUpdate(`${found?._id}`)}>Submit</button>
+                            <button className="btn btn-danger mb-5" onClick={ () => submitUpdate(`${found?._id}`)}>Submit</button>
                         </form>
                     </div>
                 )
