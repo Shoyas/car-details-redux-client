@@ -117,7 +117,7 @@ const CarInfo = () => {
                     isAdmin &&
                     <div className="">
                         <button className="btn btn-danger ml-5" onClick={() => deleteCarBrand(`${found?._id}`)}>Delete</button>
-                        <button className="btn btn-secondary ml-5" onClick={ () => toggle(`${found?._id}`)}>Update</button>
+                        {/* <button className="btn btn-secondary ml-5" onClick={ () => toggle(`${found?._id}`)}>Update</button> */}
                     </div>
                 }
             </div>
