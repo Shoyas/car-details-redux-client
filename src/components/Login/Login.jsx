@@ -40,7 +40,7 @@ const Login = () => {
 
     return (
         <section>
-            <div className="text-center mt-5 mb-5">
+            <div className="text-center mt-5 mb-5 img-fluid">
                 <Link to="/home">
                     <img src={logo} alt="" srcset=""/>
                 </Link>

@@ -5,3 +5,51 @@
 .footer-body{
     margin-top: 50px;
 }
+
+
+/* Responsive */
+
+/* it will be working under 360px width display */
+
+@media all and
+(max-width : 360px)
+{
+    .footer-logo-size{
+        width: 25%;
+        height: 15%;
+    }
+   
+}
+
+/* it will be working under 320px width display */
+
+@media all and (max-width: 320px)
+{
+    .footer-logo-size{
+        width: 25%;
+        height: 15%;
+    }
+    
+}
+
+/* it will be working under 411px width display */
+
+@media all and (max-width: 411px)
+{
+    .footer-logo-size{
+        width: 25%;
+        height: 15%;
+    }
+    
+}
+
+/* it will be working under 540px width display */
+
+@media all and (max-width: 540px)
+{
+    .footer-logo-size{
+        width: 25%;
+        height: 15%;
+    }
+}
+

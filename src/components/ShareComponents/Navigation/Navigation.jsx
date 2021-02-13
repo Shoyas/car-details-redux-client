@@ -40,10 +40,10 @@ const Navigation = () => {
 
                             {
                                 isAdmin && 
-                                <div className="d-flex justify-content-around">
+                                <Nav>
                                     <Link className="nav-link text-dark mr-2" to="/addCar">Add Car</Link>
                                     <Link className="nav-link text-dark mr-2" to="/makeAdmin">Make Admin</Link>
-                                </div>
+                                </Nav>
                             }
                             
                         </Nav>
