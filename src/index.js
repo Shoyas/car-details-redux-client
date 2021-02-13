@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import App from './App';
 import carDetailReducer from './components/redux/reducer';
 
+
 const store = createStore(
     carDetailReducer, 
     composeWithDevTools(applyMiddleware(thunk))
